@@ -28,8 +28,8 @@ public:
 	ATTRIBUTE_ACCESSORS(UOSFPSAttributeSet, Health);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
-		FGameplayAttributeData Armor;
-	ATTRIBUTE_ACCESSORS(UOSFPSAttributeSet, Armor);
+		FGameplayAttributeData Armour;
+	ATTRIBUTE_ACCESSORS(UOSFPSAttributeSet, Armour);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
 		FGameplayAttributeData Bullets;

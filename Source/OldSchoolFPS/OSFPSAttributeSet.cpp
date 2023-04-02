@@ -15,8 +15,8 @@ void UOSFPSAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute,
 
 	if(Attribute  == GetHealthAttribute())
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxHealth);
-	else if (Attribute == GetArmorAttribute())
-		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxArmor);
+	else if (Attribute == GetArmourAttribute())
+		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxArmour);
 	else if(Attribute  == GetBulletsAttribute())
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxBullets);
 	else if(Attribute  == GetRocketsAttribute())
@@ -31,9 +31,9 @@ bool UOSFPSAttributeSet::PreGameplayEffectExecute(FGameplayEffectModCallbackData
 
 	if (Data.EvaluatedData.Magnitude > 0)
 	{
-		if (Data.EvaluatedData.Attribute == GetArmorAttribute() && GetArmor() + AbsoluteMagnitude >= RetroChar->MaxArmor)
+		if (Data.EvaluatedData.Attribute == GetArmourAttribute() && GetArmour() + AbsoluteMagnitude >= RetroChar->MaxArmour)
 		{
-			SetArmor(RetroChar->MaxArmor);
+			SetArmour(RetroChar->MaxArmour);
 			return false;
 		}
 
@@ -56,8 +56,8 @@ bool UOSFPSAttributeSet::PreGameplayEffectExecute(FGameplayEffectModCallbackData
 
 	else if (Data.EvaluatedData.Magnitude < 0)
 	{
-		if (Data.EvaluatedData.Attribute == GetArmorAttribute() && AbsoluteMagnitude > GetArmor())
-			Health.SetCurrentValue(Health.GetCurrentValue() - (AbsoluteMagnitude - GetArmor()));
+		if (Data.EvaluatedData.Attribute == GetArmourAttribute() && AbsoluteMagnitude > GetArmour())
+			Health.SetCurrentValue(Health.GetCurrentValue() - (AbsoluteMagnitude - GetArmour()));
 	}
     return true;
 }
@@ -66,8 +66,8 @@ void UOSFPSAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallb
 {
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute() && GetHealth() < 0)
 		SetHealth(0);
-	else if (Data.EvaluatedData.Attribute == GetArmorAttribute() && GetArmor() < 0)
-		SetArmor(0);
+	else if (Data.EvaluatedData.Attribute == GetArmourAttribute() && GetArmour() < 0)
+		SetArmour(0);
 	else if (Data.EvaluatedData.Attribute == GetBulletsAttribute() && GetBullets() < 0)
 		SetBullets(0);
 	else if (Data.EvaluatedData.Attribute == GetRocketsAttribute() && GetRockets() < 0)
