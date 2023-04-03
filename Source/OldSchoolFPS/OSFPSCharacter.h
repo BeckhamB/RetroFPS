@@ -29,9 +29,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 		int MaxArmour = 100;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-		int MaxBullets = 250;
+		int MaxBullets = 50;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
-		int MaxRockets = 20;
+		int MaxRockets = 10;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+		int MaxShells = 25;
 
 
 protected:

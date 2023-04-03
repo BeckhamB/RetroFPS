@@ -39,6 +39,10 @@ public:
 		FGameplayAttributeData Rockets;
 	ATTRIBUTE_ACCESSORS(UOSFPSAttributeSet, Rockets);
 
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+		FGameplayAttributeData Shells;
+	ATTRIBUTE_ACCESSORS(UOSFPSAttributeSet, Shells);
+
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual bool PreGameplayEffectExecute(struct FGameplayEffectModCallbackData& Data) override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;

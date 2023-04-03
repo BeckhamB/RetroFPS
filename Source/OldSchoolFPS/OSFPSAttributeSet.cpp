@@ -13,14 +13,26 @@ void UOSFPSAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute,
 {
 	AOSFPSCharacter* RetroChar = Cast<AOSFPSCharacter>(GetOwningActor());
 
-	if(Attribute  == GetHealthAttribute())
+	if (Attribute == GetHealthAttribute())
+	{
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxHealth);
+	}
 	else if (Attribute == GetArmourAttribute())
+	{
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxArmour);
-	else if(Attribute  == GetBulletsAttribute())
+	}
+	else if (Attribute == GetBulletsAttribute())
+	{
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxBullets);
-	else if(Attribute  == GetRocketsAttribute())
+	}
+	else if (Attribute == GetRocketsAttribute())
+	{
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxRockets);
+	}
+	else if (Attribute == GetShellsAttribute())
+	{
+		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxShells);
+	}
 }
 
 bool UOSFPSAttributeSet::PreGameplayEffectExecute(FGameplayEffectModCallbackData& Data)
@@ -52,12 +64,19 @@ bool UOSFPSAttributeSet::PreGameplayEffectExecute(FGameplayEffectModCallbackData
 			SetRockets(RetroChar->MaxRockets);
 			return false;
 		}
+		else if (Data.EvaluatedData.Attribute == GetShellsAttribute() && GetShells() + AbsoluteMagnitude >= RetroChar->MaxShells)
+		{
+			SetShells(RetroChar->MaxShells);
+			return false;
+		}
 	}
 
 	else if (Data.EvaluatedData.Magnitude < 0)
 	{
 		if (Data.EvaluatedData.Attribute == GetArmourAttribute() && AbsoluteMagnitude > GetArmour())
+		{
 			Health.SetCurrentValue(Health.GetCurrentValue() - (AbsoluteMagnitude - GetArmour()));
+		}
 	}
     return true;
 }
@@ -65,11 +84,23 @@ bool UOSFPSAttributeSet::PreGameplayEffectExecute(FGameplayEffectModCallbackData
 void UOSFPSAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute() && GetHealth() < 0)
+	{
 		SetHealth(0);
+	}
 	else if (Data.EvaluatedData.Attribute == GetArmourAttribute() && GetArmour() < 0)
+	{
 		SetArmour(0);
+	}
 	else if (Data.EvaluatedData.Attribute == GetBulletsAttribute() && GetBullets() < 0)
+	{
 		SetBullets(0);
+	}
 	else if (Data.EvaluatedData.Attribute == GetRocketsAttribute() && GetRockets() < 0)
+	{
 		SetRockets(0);
+	}
+	else if (Data.EvaluatedData.Attribute == GetShellsAttribute() && GetShells() < 0)
+	{
+		SetShells(0);
+	}
 }
