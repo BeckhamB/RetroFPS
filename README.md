@@ -5,6 +5,7 @@ Unreal Engine Version Used:
 
 Assets Used:
 Various assets
+Gameplay Ability System
 
 Controls:
 Mouse - Look 
