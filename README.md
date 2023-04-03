@@ -1,20 +1,18 @@
 # RetroFPS
 
 Unreal Engine Version Used: 
-2022.1.16f1
+5.1.1
 
 Assets Used:
-Sand Textures Pack
-Tileable Bricks Wall
-Toony Tiny People
+Various assets
 
 Controls:
-Mouse - Look - Sensitivity may be high!
+Mouse - Look 
 WASD - Move
-P - Swap Camera
-X - Open Ping Wheel
-(All actions below are included in the ping wheel)
-Z - Move to pinged location
-R - Return to player
+P - Pause Game
+Left Click - Fire Weapon
+1 - Swap to Pistol
+2 - Swap to Rocket Launcher
+3 - Swap to Shotgun
 
-Use of both Blueprints and C++ Classes within the build
+Use of both Blueprints and C++ Classes within the build, further explained in report
